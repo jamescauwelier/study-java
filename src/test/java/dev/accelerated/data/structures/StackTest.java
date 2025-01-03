@@ -61,7 +61,7 @@ class StackPropertyTests {
     }
 
     @Property
-    void pushing_a_value_increases_the_len_by_1(@ForAll("stacks") Stack<Integer> stack, @ForAll int value) {
+    <T> void pushing_a_value_increases_the_len_by_1(@ForAll("stacks") Stack<T> stack, @ForAll T value) {
         Integer previousSize = stack.len();
         stack.push(value);
         Integer newSize = stack.len();
@@ -70,7 +70,7 @@ class StackPropertyTests {
     }
 
     @Property
-    void popping_a_value_decreases_the_len_by_1_at_most(@ForAll("stacks") Stack<Integer> stack) {
+    <T> void popping_a_value_decreases_the_len_by_1_at_most(@ForAll("stacks") Stack<T> stack) {
         Integer previousSize = stack.len();
         stack.pop();
         Integer newSize = stack.len();
@@ -79,7 +79,7 @@ class StackPropertyTests {
     }
 
     @Property
-    void pushing_and_popping_does_not_change_the_size(@ForAll("stacks") Stack<Integer> stack, @ForAll int value) {
+    <T> void pushing_and_popping_does_not_change_the_size(@ForAll("stacks") Stack<T> stack, @ForAll T value) {
         Integer previousSize = stack.len();
         stack.push(value);
         stack.pop();
@@ -89,19 +89,19 @@ class StackPropertyTests {
     }
 
     @Property
-    void popping_returns_the_last_pushed_value(@ForAll("stacks") Stack<Integer> stack, @ForAll int value) {
+    <T> void popping_returns_the_last_pushed_value(@ForAll("stacks") Stack<T> stack, @ForAll T value) {
         stack.push(value);
         assertEquals(Optional.of(value), stack.pop());
     }
 
     @Property
-    void peeking_returns_the_last_pushed_value(@ForAll("stacks") Stack<Integer> stack, @ForAll int value) {
+    <T> void peeking_returns_the_last_pushed_value(@ForAll("stacks") Stack<T> stack, @ForAll T value) {
         stack.push(value);
         assertEquals(Optional.of(value), stack.peek());
     }
 
     @Property
-    void peeking_does_not_change_the_size(@ForAll("stacks") Stack<Integer> stack) {
+    <T> void peeking_does_not_change_the_size(@ForAll("stacks") Stack<T> stack) {
         Integer previousSize = stack.len();
         stack.peek();
         Integer newSize = stack.len();
