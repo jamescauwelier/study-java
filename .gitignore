@@ -1,3 +1,9 @@
+### JQWIK (Property based testing) ###
+
+.jqwik-database
+
+### gradle ###
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

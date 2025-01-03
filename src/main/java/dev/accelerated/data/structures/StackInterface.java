@@ -23,5 +23,5 @@ public interface StackInterface<T> {
     /**
      * Returns the number of elements currently in the stack.
      */
-    int size();
+    int len();
 }
