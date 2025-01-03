@@ -9,6 +9,10 @@ class LinkedList<T> {
     int len;
 
     LinkedList(T head, Optional<LinkedList<T>> tail) {
+        if (head == null) {
+            throw new IllegalArgumentException("Head cannot be null");
+        }
+
         this.head = head;
         this.tail = tail;
         this.len = 1 + (tail.isPresent() ? tail.get().len : 0);

@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-enum StackActions {
-    PUSH, POP
-}
 
-class StackPropertyTests {
+class StackPropertyTest {
+
+    enum StackActions {
+        PUSH, POP
+    }
 
     @Provide
     Arbitrary<StackActions> actions() {
@@ -40,6 +42,17 @@ class StackPropertyTests {
         }
 
         return Arbitraries.just(stack);
+    }
+
+    @Example
+    void a_null_cannot_be_pushed() {
+        Stack<Integer> stack = new Stack<>();
+        try {
+            stack.push(null);
+            fail("Pushing a null value should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Head cannot be null", e.getMessage());
+        }
     }
 
     @Example
